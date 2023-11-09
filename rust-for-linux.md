@@ -1,8 +1,12 @@
 ## 第1周 练习作业
 
-### 环境搭建(bindgen版本过高,修改了部分增对bindgen参数的Makefile配置）
-<img width="1633" alt="image" src="https://github.com/xxkeming/rust/assets/11630632/3a04cfab-e44a-4f5a-9198-f983c7ba8ea4">
+### 源码下载
+```
+git clone https://github.com/Rust-for-Linux/linux -b rust-dev --depth 1
+git clone https://github.com/fujita/linux.git -b rust-e1000 --depth 1
+```
 
+### 环境搭建
 ```
 ## Install dependency packages
 sudo apt-get -y install \
@@ -23,6 +27,9 @@ rustup component add rust-src
 cargo install --locked --version $(scripts/min-tool-version.sh bindgen) bindgen-cli
 make LLVM=1 rustavailable
 ```
+
+### 编译时遇到的问题 bindgen版本过高,修改了部分增对bindgen参数的Makefile配置
+<img width="1633" alt="image" src="https://github.com/xxkeming/rust/assets/11630632/3a04cfab-e44a-4f5a-9198-f983c7ba8ea4">
 
 ### 编译流程,配置开启rust,并把练习2的代码及配置加入
 ```

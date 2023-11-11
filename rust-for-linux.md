@@ -82,7 +82,7 @@ https://github.com/xxkeming/e1000-driver
 ```
 <img width="1551" alt="image" src="https://github.com/xxkeming/rust/assets/11630632/ead8e636-3ae8-45e6-924f-e55ad3cf0ff5">
 
-## 自定义基本模块
+## 补充: 自定义基本模块
 ### test.rs
 ```
 use kernel::prelude::*;

@@ -82,3 +82,33 @@ https://github.com/xxkeming/e1000-driver
 ```
 <img width="1551" alt="image" src="https://github.com/xxkeming/rust/assets/11630632/ead8e636-3ae8-45e6-924f-e55ad3cf0ff5">
 
+## 自定义基本模块
+### test.rs
+```
+use kernel::prelude::*;
+module! {
+  type: RustTest,
+  name: "rust_test",
+  author: "keming",
+  description: "test module in rust",
+  license: "GPL",
+}
+struct RustTest {}
+impl kernel::Module for RustTest {
+  fn init(_name: &'static CStr, _module: &'static ThisModule) -> Result<Self> {
+      pr_info!("test from Rust module");
+      Ok(RustTest {})
+  }
+}
+```
+### makefile
+```
+obj-m := test.o
+PWD := $(shell pwd)
+ARCH ?= arm64
+KDIR ?= /lib/modules/$(shell uname -r)/build
+default:
+	$(MAKE) ARCH=$(ARCH) LLVM=1 -C $(KDIR) M=$(PWD)/ modules
+clean:
+	$(MAKE) ARCH=$(ARCH) LLVM=1 -C $(KDIR) M=$(PWD)/ clean
+```

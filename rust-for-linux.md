@@ -78,7 +78,7 @@ qemu-system-aarch64 -M virt -cpu cortex-a57 -smp 1 -m 256M -kernel build/arch/ar
 ```
 ### e100网卡驱动作业仓库地址及运行结果
 ```
-[https://github.com/xxkeming/](https://github.com/xxkeming/e1000-driver)
+https://github.com/xxkeming/e1000-driver
 ```
 <img width="1551" alt="image" src="https://github.com/xxkeming/rust/assets/11630632/ead8e636-3ae8-45e6-924f-e55ad3cf0ff5">
 

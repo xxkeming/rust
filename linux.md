@@ -37,6 +37,8 @@ make LLVM=1 rustavailable
 
 ### 编译,配置开启rust
 ```
+make ARCH=arm64 CC=clang defconfig
+or
 make ARCH=arm64 LLVM=1 O=build defconfig
 make ARCH=arm64 LLVM=1 O=build menuconfig
 cd build && time make ARCH=arm64 LLVM=1 -j4

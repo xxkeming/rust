@@ -121,6 +121,8 @@ ifconfig eth0 192.168.100.224 netmask 255.255.255.0 broadcast 192.168.100.255 up
 
 ### 启动方式参考,及busybox生成
 ```
+qemu-system-x86_64 -kernel build/arch/x86/boot/bzImage -initrd ../busybox-1.36.1/initramfs.cpio.gz -nographic -append "init=/init console=ttyS0"
+
 qemu-system-aarch64 -machine virt -cpu cortex-a53 -nographic -smp 1 -m 2048 -kernel build/arch/arm64/boot/Image.gz -initrd qemu-initramfs.img
 
 qemu-system-aarch64 \

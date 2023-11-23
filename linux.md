@@ -37,20 +37,28 @@ make LLVM=1 rustavailable
 
 ### 编译,配置开启rust
 ```
-make ARCH=arm64 CC=clang defconfig
+make ARCH=riscv CC=clang defconfig
+or
+make ARCH=riscv LLVM=1 LLVM_IAS=0 O=build defconfig
+make ARCH=riscv LLVM=1 LLVM_IAS=0 O=build menuconfig
+cd build && time make ARCH=riscv LLVM=1 LLVM_IAS=0 -j4
 or
 make ARCH=arm64 LLVM=1 O=build defconfig
 make ARCH=arm64 LLVM=1 O=build menuconfig
 cd build && time make ARCH=arm64 LLVM=1 -j4
+or
+make ARCH=x86_64 LLVM=1 O=build defconfig
+make ARCH=x86_64 LLVM=1 O=build menuconfig
+cd build && time make ARCH=x86_64 LLVM=1 -j4
 ```
 
 ### 生成 rust-analyzer, rust-project.json
 ```
 linux/build目录下执行
-make ARCH=arm64 LLVM=1 rust-analyzer
+make ARCH=riscv LLVM=1 rust-analyzer
 
 外部项目执行,会添加当前目录所以*.rs
-make ARCH=arm64 -C ~/linux/build/ M=$PWD rust-analyzer
+make ARCH=riscv -C ~/linux/build/ M=$PWD rust-analyzer
 ```
 
 ### 配置vocode
@@ -85,7 +93,7 @@ impl kernel::Module for RustTest {
 ```
 obj-m := test.o
 PWD := $(shell pwd)
-ARCH ?= arm64
+ARCH ?= riscv
 KDIR ?= /lib/modules/$(shell uname -r)/build
 default:
 	$(MAKE) ARCH=$(ARCH) LLVM=1 -C $(KDIR) M=$(PWD)/ modules

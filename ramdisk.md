@@ -5,10 +5,10 @@ git clone https://github.com/Rust-for-Linux/linux -b rust-dev --depth 1
 
 ## 项目目标
 ```
-rust实现基于内存的块设备模块
+rust实现基于内存的块设备模块,有部分内存读写的宏太复杂,还是c实现
 ```
 
-## blk-mq的binding添加,部分封装
+## blk-mq的binding添加,部分结构的封装
 ### rust实现基于内存的块设备模块
 ### bindings_helper.h 添加需要引用的头文件
 ```

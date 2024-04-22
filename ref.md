@@ -76,8 +76,8 @@ pub struct SignOpts {
 
     #[arg(long)]
     pub sub: String,
-    #[arg(long = "aud")]
-    pub company: String,
+    #[arg(long)]
+    pub adu: String,
     #[arg(long, value_parser = parse_exp_format)]
     pub exp: i64,
 }
@@ -88,7 +88,12 @@ let token = encode(&header, &self, &EncodingKey::from_secret(self.secret.as_byte
 println!("token {:?}", token);
 
 // 解析token
-let token = decode::<SignOpts>(&self.token, &DecodingKey::from_secret(self.secret.as_bytes()), &Validation::new(Algorithm::HS256))?;
+let mut validation = Validation::new(Algorithm::HS256);
+
+// 要设置验证过期时间 但是不验证目标
+validation.validate_aud = false;
+validation.validate_exp = true;
+let token = decode::<SignOpts>(&self.token, &DecodingKey::from_secret(self.secret.as_bytes()), &validation)?;
 println!("verify {:?}", token);
 
 // 时间的解析, 支持天数
